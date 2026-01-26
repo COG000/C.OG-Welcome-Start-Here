@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.OG — Welcome & Start Here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #05070a;
+            --deep: #0a0f18;
+            --surface: #0f1620;
+            --elevated: #151d2a;
+            --border: rgba(56, 189, 248, 0.12);
+            --border-bright: rgba(56, 189, 248, 0.3);
+            
+            --cyan: #38bdf8;
+            --cyan-dim: rgba(56, 189, 248, 0.15);
+            --cyan-glow: rgba(56, 189, 248, 0.4);
+            --emerald: #34d399;
+            --emerald-dim: rgba(52, 211, 153, 0.15);
+            --amber: #fbbf24;
+            --amber-dim: rgba(251, 191, 36, 0.15);
+            --rose: #fb7185;
+            --rose-dim: rgba(251, 113, 133, 0.15);
+            --violet: #a78bfa;
+            --violet-dim: rgba(167, 139, 250, 0.15);
+            --gold: #d4af37;
+            --gold-dim: rgba(212, 175, 55, 0.15);
+            
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--void);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        .glow-orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-orb-1 {
+            background: var(--cyan);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .glow-orb-2 {
+            background: var(--violet);
+            bottom: -200px;
+            left: -200px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .glow-orb-3 {
+            background: var(--emerald);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            opacity: 0.06;
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 30px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.06; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.08; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.5rem 0.875rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan);
+            background: var(--cyan-dim);
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 6rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border: 1px solid var(--border-bright);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-title .gradient {
+            background: linear-gradient(135deg, var(--cyan), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyan), #0ea5e9);
+            color: var(--void);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-bright);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cyan-dim);
+            border-color: var(--cyan);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Mission Statement */
+        .mission {
+            background: linear-gradient(135deg, var(--deep), var(--surface));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--violet), var(--emerald));
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .mission-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Philosophy Cards */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .philosophy-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(56, 189, 248, 0.03));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .philosophy-card:hover::before {
+            opacity: 1;
+        }
+
+        .philosophy-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-4px);
+        }
+
+        .philosophy-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .philosophy-card:nth-child(1) .philosophy-icon {
+            background: var(--rose-dim);
+        }
+        .philosophy-card:nth-child(2) .philosophy-icon {
+            background: var(--cyan-dim);
+        }
+        .philosophy-card:nth-child(3) .philosophy-icon {
+            background: var(--emerald-dim);
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .philosophy-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* What You'll Learn */
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .learning-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .learning-card:hover {
+            border-color: var(--border-bright);
+            background: var(--elevated);
+        }
+
+        .learning-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cyan);
+            opacity: 0.5;
+            line-height: 1;
+        }
+
+        .learning-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .learning-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Server Navigation Map */
+        .server-map {
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .server-map::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50px;
+            right: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .channel-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .channel-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .channel-section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .channel-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .channel-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .channel-item:hover {
+            border-color: var(--border-bright);
+            background: var(--elevated);
+        }
+
+        .channel-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .channel-icon.cyan { background: var(--cyan-dim); }
+        .channel-icon.emerald { background: var(--emerald-dim); }
+        .channel-icon.amber { background: var(--amber-dim); }
+        .channel-icon.violet { background: var(--violet-dim); }
+        .channel-icon.rose { background: var(--rose-dim); }
+        .channel-icon.gold { background: var(--gold-dim); }
+
+        .channel-info {
+            flex: 1;
+        }
+
+        .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .channel-name .hashtag {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .channel-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .channel-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-start {
+            background: var(--emerald-dim);
+            color: var(--emerald);
+        }
+
+        .badge-core {
+            background: var(--cyan-dim);
+            color: var(--cyan);
+        }
+
+        .badge-vip {
+            background: var(--gold-dim);
+            color: var(--gold);
+        }
+
+        /* Journey Path */
+        .journey-section {
+            padding: 6rem 0;
+        }
+
+        .journey-path {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .journey-path::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--cyan), var(--violet), var(--emerald));
+            border-radius: 2px;
+        }
+
+        .journey-step {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .journey-step:hover {
+            border-color: var(--border-bright);
+        }
+
+        .journey-step::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--void);
+            border: 3px solid var(--cyan);
+        }
+
+        .journey-step:nth-child(2)::before { border-color: var(--violet); }
+        .journey-step:nth-child(3)::before { border-color: var(--emerald); }
+        .journey-step:nth-child(4)::before { border-color: var(--amber); }
+
+        .journey-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        .journey-step:nth-child(2) .step-number { color: var(--violet); background: var(--violet-dim); }
+        .journey-step:nth-child(3) .step-number { color: var(--emerald); background: var(--emerald-dim); }
+        .journey-step:nth-child(4) .step-number { color: var(--amber); background: var(--amber-dim); }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .step-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .step-content ul {
+            margin-top: 1rem;
+            padding-left: 1.25rem;
+        }
+
+        .step-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Key Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .principle-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .principle-card:nth-child(1)::before { background: var(--cyan); }
+        .principle-card:nth-child(2)::before { background: var(--emerald); }
+        .principle-card:nth-child(3)::before { background: var(--violet); }
+        .principle-card:nth-child(4)::before { background: var(--amber); }
+
+        .principle-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .principle-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--deep), var(--surface));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05), transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-disclaimer {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .mission {
+                padding: 2.5rem;
+            }
+            
+            .mission-quote {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .server-map {
+                padding: 1.5rem;
+            }
+            
+            .channel-item {
+                padding: 1rem;
+            }
+            
+            .journey-path {
+                padding-left: 2rem;
+            }
+            
+            .journey-step::before {
+                left: -1.6rem;
+                width: 12px;
+                height: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="grid-bg"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">C.OG</a>
+            <ul class="nav-links">
+                <li><a href="#philosophy" class="active">Philosophy</a></li>
+                <li><a href="#learn">What You'll Learn</a></li>
+                <li><a href="#navigate">Server Guide</a></li>
+                <li><a href="#journey">Your Journey</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-tag">QUANTITATIVE & MACRO FINANCE EDUCATION</div>
+                <h1 class="hero-title">
+                    Welcome To The Turning Point
+                </h1>
+                <p class="hero-subtitle">
+                    Industry-grade quantitative and macro finance frameworks — the level of insight normally reserved for institutional environments, now accessible to you.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://discord.com/channels/1335968364228513867/1463893842347429992" target="_blank" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12l7 7 7-7"/>
+                        </svg>
+                        Start Your Journey
+                    </a>
+                    <a href="#philosophy" class="btn btn-secondary">Learn Our Philosophy</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="section">
+            
+            <!-- Mission Statement -->
+            <div class="mission">
+                <div class="mission-content">
+                    <p class="mission-quote">
+                        The financial market and trading industry is set up in every aspect possible for the consumer to fail. This education exists to change that.
+                    </p>
+                    <p class="mission-text">
+                        We provide comprehensive, institutional-grade content designed to shift your positioning from being consistently behind the market to operating several steps ahead. This will be a pivotal point in your trading journey — the educational content here will open your eyes to an entirely new dimension of financial markets.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Philosophy Cards -->
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">⚠️</div>
+                    <h3>The Problem With Retail Education</h3>
+                    <p>Most publicly taught strategies are built on repetition — the same patterns, indicators, and signals recycled endlessly. They simplify what is complex and disguise randomness as structure. Once a method becomes widely known, it loses its informational value.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">🔬</div>
+                    <h3>The Institutional Difference</h3>
+                    <p>Professional investors operate with a fundamentally different framework. They think in systems — feedback loops, constraints, and relationships between assets and flows. They trade based on macro drivers, liquidity conditions, and data-derived triggers — not chart patterns.</p>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">🎯</div>
+                    <h3>Our Approach</h3>
+                    <p>We teach the frameworks that explain <em>why</em> markets move — not the simplified versions that circulate online. This level of accuracy and structure isn't available publicly. Every concept is proprietary to this group and designed to save you thousands of hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Learn Section -->
+        <section id="learn" class="section">
+            <div class="section-header">
+                <div class="section-tag">Curriculum Overview</div>
+                <h2 class="section-title">What You'll Learn</h2>
+                <p class="section-subtitle">
+                    A comprehensive education spanning quantitative systems, macro analysis, and professional execution frameworks.
+                </p>
+            </div>
+
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="learning-number">01</div>
+                    <div class="learning-content">
+                        <h3>True Market Drivers</h3>
+                        <p>Understand monetary policy, central bank dynamics, economic data interpretation, capital flows, liquidity conditions, and geopolitical risk — the forces that actually move markets before they appear on any chart.</p>
+                    </div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-number">02</div>
+                    <div class="learning-content">
+                        <h3>Quantitative Frameworks</h3>
+                        <p>Build data-driven systems with proper validation. Learn why regressions are important, statistical testing, walk-forward analysis, and the quantitative construction methods used by institutional traders.</p>
+                    </div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-number">03</div>
+                    <div class="learning-content">
+                        <h3>Multi-Asset Analysis</h3>
+                        <p>Master cross-asset correlations and leading indicators — VIX, treasuries, credit spreads, commodities, and equity flows — to anticipate currency and index movements before they occur.</p>
+                    </div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-number">04</div>
+                    <div class="learning-content">
+                        <h3>Professional Execution</h3>
+                        <p>Execute mechanical systems derived from validated data. Remove emotion and discretion by building repeatable processes that align with institutional flows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Server Navigation Section -->
+        <section id="navigate" class="section">
+            <div class="section-header">
+                <div class="section-tag">Server Guide</div>
+                <h2 class="section-title">Navigating C.OG</h2>
+                <p class="section-subtitle">
+                    Your complete map to the server structure. Each channel serves a specific purpose in your development.
+                </p>
+            </div>
+
+            <div class="server-map">
+                
+                <!-- Getting Started -->
+                <div class="channel-section">
+                    <div class="channel-section-title">Getting Started</div>
+                    <div class="channel-grid">
+                        <div class="channel-item">
+                            <div class="channel-icon cyan">📍</div>
+                            <div class="channel-info">
+                                <div class="channel-name">
+                                    <span class="hashtag">#</span>welcome
+                                    <span class="channel-badge badge-start">Start Here</span>
+                                </div>
+                                <div class="channel-desc">Your current location. Server introduction, philosophy, and navigation guide.</div>
+                            </div>
+                        </div>
+                        <div class="channel-item">
+                            <div class="channel-icon amber">📢</div>
+                            <div class="channel-info">
+                                <div class="channel-name"><span class="hashtag">#</span>announcements</div>
+                                <div class="channel-desc">Important updates, new content releases, and server news. Check regularly.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Education -->
+                <div class="channel-section">
+                    <div class="channel-section-title">Core Education</div>
+                    <div class="channel-grid">
+                        <div class="channel-item">
+                            <div class="channel-icon emerald">📊</div>
+                            <div class="channel-info">
+                                <div class="channel-name">
+                                    <span class="hashtag">#</span>quantitative-and-macro
+                                    <span class="channel-badge badge-core">Core</span>
+                                </div>
+                                <div class="channel-desc">Primary educational content. Macro frameworks, quantitative methods, data analysis, institutional approaches. This is where your transformation begins.</div>
+                            </div>
+                        </div>
+                        <div class="channel-item">
+                            <div class="channel-icon violet">📈</div>
+                            <div class="channel-info">
+                                <div class="channel-name">
+                                    <span class="hashtag">#</span>technical-and-open-interest-education
+                                    <span class="channel-badge badge-core">Core</span>
+                                </div>
+                                <div class="channel-desc">Technical analysis reframed as an execution tool. Open interest analysis, positioning data, and how to integrate technicals within a macro context.</div>
+                            </div>
+                        </div>
+                        <div class="channel-item">
+                            <div class="channel-icon cyan">📚</div>
+                            <div class="channel-info">
+                                <div class="channel-name"><span class="hashtag">#</span>additional-materials</div>
+                                <div class="channel-desc">Supplementary resources, reference documents, cheat sheets, and extended reading materials.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis & Insights -->
+                <div class="channel-section">
+                    <div class="channel-section-title">Live Analysis & Insights</div>
+                    <div class="channel-grid">
+                        <div class="channel-item">
+                            <div class="channel-icon emerald">🔬</div>
+                            <div class="channel-info">
+                                <div class="channel-name"><span class="hashtag">#</span>quantitative-and-macro-insights</div>
+                                <div class="channel-desc">Real-time macro analysis, data interpretations, and quantitative observations applied to live market conditions.</div>
+                            </div>
+                        </div>
+                        <div class="channel-item">
+                            <div class="channel-icon violet">🎯</div>
+                            <div class="channel-info">
+                                <div class="channel-name"><span class="hashtag">#</span>technical-insights</div>
+                                <div class="channel-desc">Technical analysis applications, key levels, and execution-focused observations grounded in the broader framework.</div>
+                            </div>
+                        </div>
+                        <div class="channel-item">
+                            <div class="channel-icon rose">💡</div>
+                            <div class="channel-info">
+                                <div class="channel-name"><span class="hashtag">#</span>member-analysis</div>
+                                <div class="channel-desc">Community contributions. Share your analysis, get feedback, and learn from others applying these frameworks.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium -->
+                <div class="channel-section">
+                    <div class="channel-section-title">VIP Access</div>
+                    <div class="channel-grid">
+                        <div class="channel-item">
+                            <div class="channel-icon gold">⭐</div>
+                            <div class="channel-info">
+                                <div class="channel-name">
+                                    <span class="hashtag">#</span>vip-discussion
+                                    <span class="channel-badge badge-vip">VIP</span>
+                                </div>
+                                <div class="channel-desc">Premium discussion channel. Direct engagement, advanced topics, and priority support.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Your Journey Section -->
+        <section id="journey" class="journey-section">
+            <div class="section-header">
+                <div class="section-tag">Your Path Forward</div>
+                <h2 class="section-title">The Learning Journey</h2>
+                <p class="section-subtitle">
+                    A structured approach to transforming your market understanding — from reactive to anticipatory.
+                </p>
+            </div>
+
+            <div class="journey-path">
+                <div class="journey-step">
+                    <div class="step-header">
+                        <span class="step-number">Phase 1</span>
+                        <h3 class="step-title">Foundation — Unlearn & Rebuild</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Begin in <strong>#quantitative-and-macro</strong>. Work through the foundational content in order. Understand why retail approaches fail and how institutional thinking differs.</p>
+                        <ul>
+                            <li>Complete the "Repositioning Your Approach" lesson</li>
+                            <li>Study the Macro & Data Importance framework</li>
+                            <li>Understand the true drivers of market movement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="step-header">
+                        <span class="step-number">Phase 2</span>
+                        <h3 class="step-title">Technical & Open Interest</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Move to <strong>#technical-and-open-interest-education</strong>. Learn how to integrate technical analysis as an execution tool within your macro framework.</p>
+                        <ul>
+                            <li>Anchor technicals in macro context</li>
+                            <li>Study open interest and positioning data</li>
+                            <li>Develop entry and exit methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="step-header">
+                        <span class="step-number">Phase 3</span>
+                        <h3 class="step-title">Framework Development</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Build your analytical toolkit. Learn to interpret economic data, understand central bank dynamics, and track cross-asset relationships.</p>
+                        <ul>
+                            <li>Master the multi-asset leading indicator framework</li>
+                            <li>Learn quantitative validation methods</li>
+                            <li>Develop regime classification skills</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="step-header">
+                        <span class="step-number">Phase 4</span>
+                        <h3 class="step-title">Application & Refinement</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Follow the insights channels to see frameworks applied in real-time. Share your own analysis in <strong>#member-analysis</strong> for feedback.</p>
+                        <ul>
+                            <li>Observe live application of concepts</li>
+                            <li>Practice and share your own analysis</li>
+                            <li>Continuously refine your approach</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Principles -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-tag">Core Principles</div>
+                <h2 class="section-title">How to Approach This Education</h2>
+            </div>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>Process Over Prediction</h4>
+                    <p>Focus on building robust frameworks rather than chasing specific trade calls. The goal is to develop systematic thinking that compounds over time.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>Data-Driven Decisions</h4>
+                    <p>Every framework must be validated quantitatively. If it can't be measured and tested, it shouldn't be traded. Ensure all approaches are regime-aware and statistically sound.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>Patience in Learning</h4>
+                    <p>This material is dense by design. Take time to truly understand each concept before moving forward. Depth beats speed.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>Active Engagement</h4>
+                    <p>Ask questions, share analysis, engage with the community. The fastest path to mastery is through application and feedback.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Begin?</h2>
+                    <p class="cta-text">
+                        Head to <strong>#quantitative-and-macro</strong> to start your transformation. 
+                        The frameworks here will save you thousands of hours and countless losses from approaches that were never designed to work.
+                    </p>
+                    <a href="https://discord.com/channels/1335968364228513867/1463893842347429992" target="_blank" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        Enter #quantitative-and-macro
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">C.OG</div>
+        <p class="footer-text">Quantitative Analysis • Macro Finance • Institutional Frameworks</p>
+        <p class="footer-disclaimer">Educational content only. Not financial advice. All trading involves risk.</p>
+    </footer>
+
+    <!-- Smooth Scroll & Navigation Script -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav state on scroll
+        const sections = document.querySelectorAll('.section, .journey-section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.philosophy-card, .learning-card, .channel-item, .journey-step, .principle-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
