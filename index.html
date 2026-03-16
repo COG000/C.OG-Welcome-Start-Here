@@ -808,6 +808,8 @@
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .footer-brand {
@@ -823,11 +825,37 @@
         }
 
         .footer-disclaimer {
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .footer-disclaimer-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-disclaimer p {
             color: var(--text-muted);
-            font-size: 0.75rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            margin-bottom: 0.85rem;
+        }
+
+        .footer-disclaimer p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .footer-disclaimer strong {
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         /* Responsive */
@@ -917,7 +945,7 @@
                     Welcome To The Turning Point
                 </h1>
                 <p class="hero-subtitle">
-                    Industry-grade quantitative and macro finance frameworks — the level of insight normally reserved for institutional environments, now accessible to you.
+                    An insight into quantitative and macro finance — concepts retail traders rarely encounter, explained clearly from the ground up.
                 </p>
                 <div class="hero-cta">
                     <a href="https://discord.com/channels/1335968364228513867/1463893842347429992" target="_blank" class="btn btn-primary">
@@ -941,7 +969,7 @@
                         The financial market and trading industry is set up in every aspect possible for the consumer to fail. This education exists to change that.
                     </p>
                     <p class="mission-text">
-                        We provide comprehensive, institutional-grade content designed to shift your positioning from being consistently behind the market to operating several steps ahead. This will be a pivotal point in your trading journey — the educational content here will open your eyes to an entirely new dimension of financial markets.
+                        We provide structured educational content built around quantitative methods and macro analysis — concepts that rarely feature in retail trading education. The goal is a fundamental shift in how you understand what drives markets, moving from reactive pattern-spotting toward a data-informed, contextual approach.
                     </p>
                 </div>
             </div>
@@ -955,13 +983,13 @@
                 </div>
                 <div class="philosophy-card">
                     <div class="philosophy-icon">🔬</div>
-                    <h3>The Institutional Difference</h3>
-                    <p>Professional investors operate with a fundamentally different framework. They think in systems — feedback loops, constraints, and relationships between assets and flows. They trade based on macro drivers, liquidity conditions, and data-derived triggers — not chart patterns.</p>
+                    <h3>How Professionals Think</h3>
+                    <p>Professional market participants operate with a fundamentally different framework. They think in systems — feedback loops, constraints, and relationships between assets and flows. They work from macro drivers, liquidity conditions, and data-derived context — not chart patterns.</p>
                 </div>
                 <div class="philosophy-card">
                     <div class="philosophy-icon">🎯</div>
                     <h3>Our Approach</h3>
-                    <p>We teach the frameworks that explain <em>why</em> markets move — not the simplified versions that circulate online. This level of accuracy and structure isn't available publicly. Every concept is proprietary to this group and designed to save you thousands of hours.</p>
+                    <p>The content here focuses on the frameworks that explain <em>why</em> markets move — not the simplified versions that circulate in retail education. It's curated specifically to bridge the gap between surface-level technical approaches and a more structured, data-informed way of thinking about markets.</p>
                 </div>
             </div>
         </section>
@@ -1001,8 +1029,8 @@
                 <div class="learning-card">
                     <div class="learning-number">04</div>
                     <div class="learning-content">
-                        <h3>Professional Execution</h3>
-                        <p>Execute mechanical systems derived from validated data. Remove emotion and discretion by building repeatable processes that align with institutional flows.</p>
+                        <h3>Systematic Execution</h3>
+                        <p>Build repeatable, structured processes rooted in validated data. Remove emotional and discretionary decision-making by developing a consistent framework that holds up across different market conditions.</p>
                     </div>
                 </div>
             </div>
@@ -1242,8 +1270,7 @@
                 <div class="cta-content">
                     <h2 class="cta-title">Ready to Begin?</h2>
                     <p class="cta-text">
-                        Head to <strong>#quantitative-and-macro-education</strong> to start your transformation. 
-                        The frameworks here will save you thousands of hours and countless losses from approaches that were never designed to work.
+                        Head to <strong>#quantitative-and-macro-education</strong> to begin. The content here is designed to save you thousands of hours spent on approaches that were never going to work.
                     </p>
                     <a href="https://discord.com/channels/1335968364228513867/1463893842347429992" target="_blank" class="btn btn-primary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1260,8 +1287,14 @@
     <!-- Footer -->
     <footer>
         <div class="footer-brand">C.OG</div>
-        <p class="footer-text">Quantitative Analysis • Macro Finance • Institutional Frameworks</p>
-        <p class="footer-disclaimer">Educational content only. Not financial advice. All trading involves risk.</p>
+        <p class="footer-text">Quantitative Analysis • Macro Finance • Data-Driven Frameworks</p>
+
+        <div class="footer-disclaimer">
+            <div class="footer-disclaimer-title">⚠ Important Notice</div>
+            <p>All content provided through this programme is for <strong>educational and informational purposes only</strong>. Nothing on this page or within the group constitutes financial advice, investment advice, or a personal recommendation of any kind. You should not treat any content here as a basis for making investment or trading decisions.</p>
+            <p>Trading and investing in financial markets involves <strong>significant risk of loss</strong>, including the possible loss of all capital invested. The value of investments can go down as well as up. Past performance, historical data, and any analytical frameworks discussed are <strong>not indicative of future results</strong>.</p>
+            <p>We are not regulated by the Financial Conduct Authority or any other financial regulatory authority. Always seek independent advice from a suitably qualified, FCA-authorised professional before making any financial decisions.</p>
+        </div>
     </footer>
 
     <!-- Smooth Scroll & Navigation Script -->
